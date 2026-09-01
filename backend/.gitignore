@@ -1,19 +1,11 @@
-# Python
-.venv/
-__pycache__/
-*.pyc
-
-# Node / Backend
 node_modules/
+
+# Keep environment variables out of version control
 .env
 .env.*
 !.env.example
-dist/
-build/
 
-# OS
-.DS_Store
-*.log
+/src/generated/prisma
 
 # IDE / AI agent skill directories
 .agents/

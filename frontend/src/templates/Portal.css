@@ -1,0 +1,1361 @@
+/* =========================================
+   GLOBAL
+========================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.portal {
+  min-height: 100vh;
+
+  overflow: visible;
+
+  background: var(--bg);
+  color: var(--text);
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+
+/* =========================================
+   DARK / LIGHT THEME
+========================================= */
+
+.portal.dark {
+  --bg: #070707;
+  --surface: #101010;
+  --surface-2: #171717;
+
+  --border: #292929;
+  --border-hover: #555555;
+
+  --text: #ffffff;
+  --soft: #999999;
+  --muted: #555555;
+
+  --input: #0c0c0c;
+}
+
+.portal.light {
+  --bg: #eeeeee;
+  --surface: #ffffff;
+  --surface-2: #e4e4e4;
+
+  --border: #cccccc;
+  --border-hover: #999999;
+
+  --text: #111111;
+  --soft: #666666;
+  --muted: #999999;
+
+  --input: #f5f5f5;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 245px;
+  height: 100vh;
+
+  padding: 30px 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow-y: auto;
+
+  background: var(--surface);
+
+  border-right: 1px solid var(--border);
+
+  z-index: 50;
+}
+
+
+/* LOGO */
+
+.portal-logo {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 40px;
+
+  font-size: 21px;
+
+  color: var(--text);
+}
+
+.logo-circle {
+  width: 35px;
+  height: 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--border-hover);
+
+  border-radius: 50%;
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   SIDEBAR USER
+========================================= */
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 10px;
+
+  margin-bottom: 25px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.sidebar-user:hover {
+  border-color: var(--border-hover);
+  background: var(--surface-2);
+}
+
+
+/* AVATAR */
+
+.avatar {
+  width: 38px;
+  height: 38px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--text);
+
+  color: var(--bg);
+
+  overflow: hidden;
+
+  font-size: 14px;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+
+/* USER DETAILS */
+
+.user-details {
+  min-width: 0;
+
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.user-details strong {
+  color: var(--text);
+
+  font-size: 12px;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.user-details span {
+  color: var(--muted);
+
+  font-size: 10px;
+}
+
+.dots {
+  color: var(--muted);
+
+  font-size: 10px;
+}
+
+
+/* =========================================
+   SIDEBAR MENU
+========================================= */
+
+.sidebar-menu {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.menu-item {
+  width: 100%;
+
+  padding: 13px 10px;
+
+  display: flex;
+  align-items: center;
+
+  border: none;
+
+  border-radius: 7px;
+
+  background: transparent;
+
+  color: var(--soft);
+
+  text-align: left;
+
+  font-size: 12px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.menu-item span {
+  display: inline-block;
+
+  width: 30px;
+
+  color: var(--muted);
+
+  font-size: 9px;
+}
+
+.menu-item:hover,
+.menu-item.active {
+  background: var(--surface-2);
+
+  color: var(--text);
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+
+  padding-top: 20px;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.portal-main {
+  margin-left: 245px;
+
+  min-height: 100vh;
+
+  padding: 65px 6vw 120px;
+
+  overflow: visible;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.portal-header {
+  margin-bottom: 100px;
+}
+
+.eyebrow {
+  color: var(--muted);
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+}
+
+.portal-header h1 {
+  margin: 18px 0 10px;
+
+  color: var(--text);
+
+  font-size: clamp(45px, 6vw, 85px);
+
+  line-height: 0.9;
+
+  font-weight: 400;
+
+  letter-spacing: -5px;
+}
+
+.portal-header p {
+  margin: 0;
+
+  color: var(--soft);
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.portal-section {
+  max-width: 1250px;
+
+  margin-bottom: 105px;
+}
+
+.section-title {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 22px;
+
+  margin-bottom: 30px;
+}
+
+.section-title > span {
+  padding-top: 4px;
+
+  color: var(--muted);
+
+  font-size: 10px;
+
+  letter-spacing: 2px;
+}
+
+.section-title h2 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: 28px;
+
+  font-weight: 400;
+
+  letter-spacing: -1px;
+}
+
+.section-title p {
+  margin: 8px 0;
+
+  color: var(--soft);
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   FACULTY NAME
+========================================= */
+
+.faculty-input {
+  max-width: 650px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.faculty-input label {
+  color: var(--muted);
+
+  font-size: 9px;
+
+  letter-spacing: 2px;
+}
+
+.faculty-input input {
+  width: 100%;
+
+  padding: 15px 0;
+
+  border: none;
+
+  border-bottom: 1px solid var(--border);
+
+  outline: none;
+
+  background: transparent;
+
+  color: var(--text);
+
+  font-size: 17px;
+
+  transition: border-color 0.3s;
+}
+
+.faculty-input input:focus {
+  border-color: var(--border-hover);
+}
+
+.faculty-input small {
+  color: var(--muted);
+
+  font-size: 10px;
+}
+
+
+/* =========================================
+   COURSE OUTCOMES
+========================================= */
+
+.co-container {
+  max-width: 1000px;
+}
+
+.co-row {
+  display: grid;
+
+  grid-template-columns: 60px 1fr;
+
+  align-items: center;
+
+  min-height: 58px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.co-row > span {
+  color: var(--muted);
+
+  font-size: 12px;
+}
+
+.co-row input {
+  width: 100%;
+
+  padding: 17px 0;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  color: var(--text);
+
+  font-size: 14px;
+}
+
+.co-row input::placeholder {
+  color: var(--muted);
+}
+
+.co-row input:focus {
+  color: var(--text);
+}
+
+
+/* =========================================
+   CO / PO TABLE
+========================================= */
+
+.table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+
+  border: 1px solid var(--border);
+}
+
+table {
+  width: 100%;
+
+  min-width: 1100px;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+}
+
+th,
+td {
+  height: 55px;
+
+  padding: 0;
+
+  border-right: 1px solid var(--border);
+
+  border-bottom: 1px solid var(--border);
+
+  text-align: center;
+}
+
+th {
+  background: var(--surface-2);
+
+  color: var(--soft);
+
+  font-size: 10px;
+
+  font-weight: 500;
+}
+
+th:first-child {
+  width: 80px;
+}
+
+td input {
+  width: 100%;
+  height: 100%;
+
+  padding: 0;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  color: var(--text);
+
+  text-align: center;
+
+  font-size: 13px;
+}
+
+td input:focus {
+  background: var(--surface-2);
+
+  box-shadow:
+    inset 0 0 0 1px var(--text);
+}
+
+.keyboard-help {
+  display: block;
+
+  margin-top: 10px;
+
+  color: var(--muted);
+
+  font-size: 10px;
+}
+
+
+/* =========================================
+   FILE UPLOAD
+========================================= */
+
+.upload-box {
+  min-height: 190px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  border: 1px dashed var(--border);
+
+  background: transparent;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.upload-box:hover {
+  border-color: var(--border-hover);
+
+  background: var(--surface);
+}
+
+.upload-box input {
+  display: none;
+}
+
+.upload-arrow {
+  color: var(--text);
+
+  font-size: 30px;
+}
+
+.upload-box strong {
+  color: var(--text);
+
+  font-size: 14px;
+
+  font-weight: 400;
+}
+
+.upload-box span {
+  color: var(--muted);
+
+  font-size: 10px;
+
+  letter-spacing: 1px;
+}
+
+
+/* =========================================
+   PROFILE PANEL
+========================================= */
+
+.profile-panel {
+  position: fixed;
+
+  top: 20px;
+  right: 20px;
+
+  width: 360px;
+
+  max-height: calc(100vh - 40px);
+
+  overflow-y: auto;
+
+  padding: 25px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+
+  border-radius: 15px;
+
+  z-index: 100;
+
+  box-shadow:
+    0 20px 70px rgba(0, 0, 0, 0.4);
+}
+
+
+/* PROFILE HEADER */
+
+.profile-top {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 25px;
+}
+
+.profile-top h2 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: 24px;
+
+  font-weight: 400;
+}
+
+.close-profile {
+  border: none;
+
+  background: transparent;
+
+  color: var(--soft);
+
+  font-size: 25px;
+
+  cursor: pointer;
+}
+
+.close-profile:hover {
+  color: var(--text);
+}
+
+
+/* =========================================
+   PROFILE PICTURE
+========================================= */
+
+.profile-picture {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 25px;
+}
+
+.large-avatar {
+  width: 65px;
+  height: 65px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: var(--text);
+
+  color: var(--bg);
+
+  overflow: hidden;
+
+  font-size: 22px;
+}
+
+.large-avatar img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.change-picture {
+  color: var(--soft);
+
+  font-size: 11px;
+
+  cursor: pointer;
+}
+
+.change-picture:hover {
+  color: var(--text);
+}
+
+.change-picture input {
+  display: none;
+}
+
+
+/* =========================================
+   PROFILE INPUTS
+========================================= */
+
+.profile-panel > label {
+  display: block;
+
+  margin-top: 15px;
+
+  color: var(--muted);
+
+  font-size: 9px;
+
+  letter-spacing: 2px;
+}
+
+.profile-input {
+  width: 100%;
+
+  padding: 11px 0;
+
+  border: none;
+
+  border-bottom: 1px solid var(--border);
+
+  outline: none;
+
+  background: transparent;
+
+  color: var(--text);
+
+  font-size: 13px;
+}
+
+.profile-input:focus {
+  border-color: var(--border-hover);
+}
+
+
+/* =========================================
+   THEME TOGGLE
+========================================= */
+
+.theme-row {
+  margin-top: 25px;
+
+  padding-top: 20px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  border-top: 1px solid var(--border);
+}
+
+.theme-row div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.theme-row strong {
+  color: var(--text);
+
+  font-size: 12px;
+}
+
+.theme-row span {
+  color: var(--muted);
+
+  font-size: 10px;
+}
+
+
+/* TOGGLE */
+
+.toggle {
+  width: 45px;
+  height: 24px;
+
+  padding: 3px;
+
+  border: none;
+
+  border-radius: 20px;
+
+  background: var(--border);
+
+  cursor: pointer;
+}
+
+.toggle span {
+  display: block;
+
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+
+  background: #777;
+
+  transition: 0.3s;
+}
+
+.toggle.on {
+  background: #555;
+}
+
+.toggle.on span {
+  transform: translateX(21px);
+
+  background: #ffffff;
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+.logout-button {
+  width: 100%;
+
+  margin-top: 25px;
+
+  padding: 13px 16px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  border: 1px solid var(--border);
+
+  border-radius: 25px;
+
+  background: transparent;
+
+  color: var(--text);
+
+  font-size: 12px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.logout-button:hover {
+  background: var(--surface-2);
+
+  border-color: var(--border-hover);
+}
+
+
+/* =========================================
+   REPORT FORMAT PAGE
+========================================= */
+
+.report-format-page {
+  position: relative;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      ellipse at 80% 50%,
+      #191919 0%,
+      #0d0d0d 40%,
+      #050505 100%
+    );
+}
+
+
+/* BACK BUTTON */
+
+.report-format-page .back-button {
+  position: absolute;
+
+  top: 35px;
+  left: 5vw;
+
+  padding: 11px 20px;
+
+  border: 1px solid #333;
+
+  border-radius: 30px;
+
+  background: transparent;
+
+  color: #888;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.report-format-page .back-button:hover {
+  color: white;
+
+  border-color: #666;
+}
+
+
+/* INCOMING */
+
+.incoming-feature {
+  width: min(900px, 85%);
+}
+
+.incoming-feature .eyebrow {
+  color: #555;
+
+  font-size: 11px;
+
+  letter-spacing: 2px;
+}
+
+.incoming-feature h1 {
+  margin: 25px 0;
+
+  font-size: clamp(70px, 10vw, 140px);
+
+  line-height: 0.82;
+
+  font-weight: 400;
+
+  letter-spacing: -7px;
+}
+
+.incoming-feature h1 span {
+  color: #555;
+}
+
+.incoming-line {
+  width: 100%;
+
+  height: 1px;
+
+  margin: 35px 0;
+
+  background: #242424;
+}
+
+.incoming-feature > p {
+  max-width: 500px;
+
+  color: #777;
+
+  font-size: 15px;
+
+  line-height: 1.6;
+}
+
+.incoming-badge {
+  display: inline-block;
+
+  margin-top: 30px;
+
+  padding: 8px 14px;
+
+  border: 1px solid #333;
+
+  border-radius: 20px;
+
+  color: #777;
+
+  font-size: 9px;
+
+  letter-spacing: 2px;
+}
+
+.feature-info {
+  max-width: 600px;
+
+  margin-top: 70px;
+
+  padding-top: 20px;
+
+  display: flex;
+
+  gap: 25px;
+
+  border-top: 1px solid #242424;
+}
+
+.feature-info > span {
+  color: #444;
+
+  font-size: 11px;
+
+  letter-spacing: 2px;
+}
+
+.feature-info strong {
+  color: #aaa;
+
+  font-size: 14px;
+
+  font-weight: 400;
+}
+
+.feature-info p {
+  margin-top: 8px;
+
+  color: #555;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 800px) {
+
+  .sidebar {
+    width: 210px;
+  }
+
+  .portal-main {
+    margin-left: 210px;
+
+    padding: 50px 30px 90px;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .sidebar {
+    position: relative;
+
+    width: 100%;
+    height: auto;
+
+    border-right: none;
+
+    border-bottom: 1px solid var(--border);
+
+    overflow: visible;
+  }
+
+  .portal-main {
+    margin-left: 0;
+
+    padding: 40px 20px 80px;
+  }
+
+  .portal-header {
+    margin-bottom: 65px;
+  }
+
+  .portal-header h1 {
+    font-size: 50px;
+
+    letter-spacing: -3px;
+  }
+
+  .section-title h2 {
+    font-size: 23px;
+  }
+
+  .profile-panel {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+
+    width: auto;
+
+    max-height: calc(100vh - 20px);
+  }
+
+  .incoming-feature {
+    width: 88%;
+  }
+
+  .incoming-feature h1 {
+    font-size: 70px;
+
+    letter-spacing: -4px;
+  }
+
+  .report-format-page .back-button {
+    top: 20px;
+    left: 20px;
+  }
+
+}
+
+/* =========================
+   MAPPING ACTIONS
+========================= */
+
+.mapping-actions {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* Clear All */
+
+.clear-button {
+  padding: 10px 18px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--soft);
+  font-family: inherit;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.clear-button:hover {
+  color: var(--text);
+  border-color: var(--text);
+  background: var(--surface-2);
+}
+
+.clear-button:active {
+  transform: translateY(1px);
+}
+
+.keyboard-help {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+
+/* =========================
+   CALCULATE SECTION
+========================= */
+
+.calculate-section {
+  max-width: 1250px;
+  margin-top: 80px;
+  padding: 70px 0 30px;
+
+  border-top: 1px solid var(--border);
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.calculate-label {
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.calculate-section h2 {
+  margin: 18px 0 0;
+
+  color: var(--text);
+  font-size: clamp(55px, 7vw, 100px);
+  line-height: 0.85;
+  font-weight: 400;
+
+  letter-spacing: -6px;
+}
+
+.calculate-section h2 span {
+  color: var(--muted);
+}
+
+
+/* Calculate Button */
+
+.calculate-button {
+  position: relative;
+
+  min-width: 230px;
+  height: 52px;
+
+  padding: 0 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+
+  border: 1px solid var(--text);
+  border-radius: 3px;
+
+  background: var(--text);
+  color: var(--bg);
+
+  font-family: inherit;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.calculate-button span {
+  font-size: 18px;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.calculate-button:hover {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--text);
+}
+
+.calculate-button:hover span {
+  transform: translateX(5px);
+}
+
+.calculate-button:active {
+  transform: scale(0.98);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .mapping-actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .calculate-section {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 35px;
+    padding-top: 50px;
+  }
+
+  .calculate-section h2 {
+    font-size: 58px;
+    letter-spacing: -4px;
+  }
+
+  .calculate-button {
+    width: 100%;
+  }
+}
+
+.logo img {
+  width: 38px;
+  height: 38px;
+
+  object-fit: contain;
+
+  display: block;
+    border-radius: 10px;
+
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  color: #ffffff;
+
+  font-size: 21px;
+  font-weight: 500;
+
+  letter-spacing: -0.5px;
+
+  margin-bottom: 15px;
+}

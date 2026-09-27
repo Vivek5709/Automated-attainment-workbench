@@ -1,0 +1,23 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Node / Backend
+node_modules/
+.env
+.env.*
+!.env.example
+dist/
+build/
+
+# OS
+.DS_Store
+*.log
+
+# IDE / AI agent skill directories
+.agents/
+.claude/
+.cursor/
+.devin/
+.windsurf/
